@@ -64,24 +64,7 @@ Voorbeelden van Web API's die je kan gebruiken:
 De lijst is eindeloos, laat je vooral inspireren op de overzichtspagina van [MDN](https://developer.mozilla.org/en-US/docs/Web/API).
 
 ## Beoordeling
-
-Je zal beoordeeld worden op basis van je code, creativiteit en je gedocumenteerde proces.
-
-Gegenereerde of overgenomen code van een bron telt niet mee voor de
-beoordeling, als je AI gebruikt dien je deze als bron te vermelden, zowel in je
-procesverslag als in je code. Wanneer je code substantieel aanpast en eigen maakt
-telt deze wel mee voor de beoordeling.
-Je moet je voortgang elke vrijdag vastleggen en bespreken.
-
-Om het vak te halen zal je aan de criteria hieronder moeten voldoen. Een hoger cijfer kan je halen door verder te gaan dan de basis.
-
-| Tekortkomingen | Criterium                                                                                                                                                                                                                                 | Verbeteringen |
-|:---------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------|
-|                | *Project* - Je app werkt en is online beschikbaar.                                                                                                                                                                                        |               |
-|                | *Proces* - Je hebt je concept, technologieën, gebruikte API’s en proces duidelijk gedocumenteerd in je README.md.                                                                                                                         |               |
-|                | *Functionaliteit* - Je hebt minstens een overzicht en een detailpagina. Hoe meer dynamischer je functionaliteit.hoe beter.                                                                                                                |               |
-|                | *Enhancements* - Je laat zien dat je begrijpt hoe het web werkt door meerdere Web API's te gebruiken om een zo aantrekkelijk mogelijke gebruikerservaring neer te zetten. Je gebruikt je eigen creativiteit om iets uniks neer te zetten. |               |
-|                | *Bronnen* - Je vermeldt je bronnen zowel in je code als in je documentatie.                                                                                                                                                               |               |
+De beoordelingscriteria zijn te vinden op [DLO](https://dlo.mijnhva.nl/d2l/le/content/609470/Home)
 
 ## Planning
 
