@@ -4,14 +4,17 @@
 
 <h1 class="h1">{{ title }}</h1>
 
-<ul class="grid">
-  {% for item in items %}
+<section class="pokemon">
+  <ul>
+    {% for newsItem in gameNewsData.appnews.newsitems %}
     <li>
-      <a href="/plant/{{ item.id }}">
-        {% render 'server/components/card/card.liquid', item: item %}
+      <a href="/news/{{ newsItem.gid }}">
+        {{ newsItem.title }}
       </a>
     </li>
   {% endfor %}
-</ul>
+  </ul>
+  
+</section>
 
 {% endblock %}

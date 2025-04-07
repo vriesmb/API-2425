@@ -4,52 +4,63 @@ import { logger } from '@tinyhttp/logger';
 import { Liquid } from 'liquidjs';
 import sirv from 'sirv';
 
-const data = {
-  'beemdkroon': {
-    id: 'beemdkroon',
-    name: 'Beemdkroon',
-    image: {
-      src: 'https://i.pinimg.com/736x/09/0a/9c/090a9c238e1c290bb580a4ebe265134d.jpg',
-      alt: 'Beemdkroon',
-      width: 695,
-      height: 1080,
-    }
-  },
-  'wilde-peen': {
-    id: 'wilde-peen',
-    name: 'Wilde Peen',
-    image: {
-      src: 'https://mens-en-gezondheid.infonu.nl/artikel-fotos/tom008/4251914036.jpg',
-      alt: 'Wilde Peen',
-      width: 418,
-      height: 600,
-    }
-  }
-}
 
 const engine = new Liquid({
   extname: '.liquid',
 });
 
 const app = new App();
+const apiKey = process.env.STEAM_API_KEY;
+
+// const gameNr = '730';
+
+// const gameNewsData = await fetch('https://partner.steam-api.com/ISteamNews/GetNewsForAppAuthed/v2/?key=' + apiKey + '&appid=' + gameNr + '&count=3&maxlength=300&format=json');
 
 app
   .use(logger())
-  .use('/', sirv('dist'))
+  .use('/', sirv(process.env.NODE_ENV === 'development' ? 'client' : 'dist'))
   .listen(3000, () => console.log('Server available on http://localhost:3000'));
 
+
 app.get('/', async (req, res) => {
-  return res.send(renderTemplate('server/views/index.liquid', { title: 'Home', items: Object.values(data) }));
+  // HIER GAMES OPHALEN
+  // const url = `https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=${gameNr}&count=3`
+  // const gameNews = await fetch(url);
+  // const gameNewsData = await gameNews.json();
+  // console.log(gameNewsData);
+
+  // return res.send(renderTemplate('server/views/index.liquid', { title: 'Home', games: gameData }));
+  return res.send(renderTemplate('server/views/index.liquid', { title: 'Home' }));
 });
 
-app.get('/plant/:id/', async (req, res) => {
-  const id = req.params.id;
-  const item = data[id];
-  if (!item) {
-    return res.status(404).send('Not found');
-  }
-  return res.send(renderTemplate('server/views/detail.liquid', { title: `Detail page for ${id}`, item }));
-});
+app.get('game/:appid', async (req, res) => {
+  const appId = req.params.appid;
+  // url FOR NEWS ITEMS ATTACHED TO A GAME
+  const url = `https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=${appId}&count=12`
+
+  // urlDetails FOR A GAME WITH SIMPLIFIED GAME DETAILS LIKE TAGS/GENRES
+  const urlDetails = `https://steamspy.com/api.php?request=appdetails&appid=${appId}`;
+
+  // urlGameDeepDetails FOR A GAME WITH ALL THE DETAILS
+  const urlGameDeepDetails = `https://store.steampowered.com/api/appdetails?appids=${appId}`;
+
+  const gameDetails = await fetch(urlDetails);
+  const gameDetailsData = await gameDetails.json();
+
+  const gameNews = await fetch(url);
+  const gameNewsData = await gameNews.json();
+
+  const gameDeepDetails = await fetch(urlGameDeepDetails);
+  const gameDeepDetailsData = await gameDeepDetails.json();
+
+  console.log(gameNewsData);
+  console.log(gameDetailsData);
+  console.log(gameDeepDetailsData);
+
+  return res.send(renderTemplate('server/views/detail.liquid', { title: 'Home', gameNewsData: gameNewsData, gameDetailsData: gameDetailsData, gameDeepDetailsData: gameDeepDetailsData[appId] }));
+}
+);
+
 
 const renderTemplate = (template, data) => {
   const templateData = {
@@ -60,3 +71,31 @@ const renderTemplate = (template, data) => {
   return engine.renderFileSync(template, templateData);
 };
 
+
+
+
+
+
+// http://api.steampowered.com/<interface name>/<method name>/v<version>/?key=<api key>&format=<format>
+
+// https://api.steampowered.com
+
+
+
+// async function getData() {
+//   const url = "https://store.steampowered.com/api/appdetails?appids=730";
+//   const key = process.env.API_KEY;
+//   try {
+//     const response = await fetch(url);
+//     if (!response.ok) {
+//       throw new Error(`Response status: ${response.status}`);
+//     }
+
+//     const json = await response.json();
+//     console.log(json);
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// }
+
+// getData();
