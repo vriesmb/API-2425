@@ -22,20 +22,39 @@
     
     
 </div>
-<ul>
+</section>
+
+<section class="news-section">
+    <h3 class="h3-headline">Latest news | {{ gameDetailsData.name }}</h3>
+    <div class="slider">
         {% for newsItem in gameNewsData.appnews.newsitems %}
-        <li>
-        <a href="{{ newsItem.url }}" target="_blank">
-        {{ newsItem.title }}
-        </a>
-        </li>
+            <section>
+                <p>{{ newsItem.title }}</p>
+                {% if newsItem.firstImg %}
+                    <img src="{{ newsItem.firstImg }}" alt="Nieuws afbeelding" />
+                {% endif %}
+            </section>
         {% endfor %}
-        
-  </ul>
-    
+    </div>
 </section>
 
 {% endblock %}
+
+
+
+
+
+{% comment %} {% for newsItem in gameNewsData.appnews.newsitems %}
+    <li>
+    <p> {{ newsItem.title }}</p>
+    <a href="{{ newsItem.url }}" target="_blank">
+   
+    </a>
+    </li>
+    {% endfor %} {% endcomment %}
+
+
+
 
 {% comment %} <div>
         
