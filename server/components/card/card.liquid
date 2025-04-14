@@ -1,4 +1,43 @@
-<div class="card">
-  <h2 class="h2">{{ item.name }}</h2>
-  <img class="card__image" src="{{ item.image.src }}" alt="{{ item.image.alt }}" width="{{ item.image.width }}" height="{{ item.image.height }}" />
-</div>
+{% block content %}
+<article class="card">
+  <h2 class="h2">{{ gameDetailsData.name }}</h2>
+  <img class="card__image" src="{{ gameDeepDetailsData.data.header_image }}" alt="{{ item.image.alt }}" />
+</article>
+
+{% endblock %}
+
+
+
+{% comment %} 
+<h1 class="h1">Latest news | {{ gameDetailsData.name }}</h1>
+<img src="{{ gameDeepDetailsData.header_image }}" alt="header image {{ newsItem.name }}">
+<h3>Game Description: {{ gameDeepDetailsData.data.short_description }}</h3>
+
+<section class="game-news">
+
+    <h3>Game News Details for</h3>
+    <h2>{{ gameDetailsData.name }}</h2>
+    <h3>Game ID: {{ gameDetailsData.appid }}</h3>
+    <h3>Game Type: {{ gameDetailsData.type }}</h3>
+    {% if gameDeepDetailsData.data.release_date.coming_soon %}
+        <h3>Coming Soon: {{ gameDeepDetailsData.data.release_date.date }}</h3>
+    {% else %}
+        <h3>Already Released: {{ gameDeepDetailsData.data.release_date.date }}</h3>
+    {% endif %}
+
+    <h3>Game Header Image: <img src="{{ gameDeepDetailsData.header_image }}" alt="Game Header Image"></h3>
+
+    <ul>
+        {% for newsItem in gameNewsData.appnews.newsitems %}
+        <li>
+            
+        
+        <a href="{{ gameDetails.url }}" target="_blank">
+        {{ newsItem.title }}
+        </a>
+        </li>
+        {% endfor %}
+        
+  </ul>
+  
+</section> {% endcomment %}

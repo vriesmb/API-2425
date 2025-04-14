@@ -11,10 +11,6 @@
 
 body {
   color: black;
-  max-width: 1440px;
   margin: 0 auto;
-}
-
-main {
-  padding: 1rem;
+  padding: 0 auto;
 }

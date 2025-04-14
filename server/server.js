@@ -33,6 +33,42 @@ app.get('/', async (req, res) => {
   return res.send(renderTemplate('server/views/index.liquid', { title: 'Home' }));
 });
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+app.get('card/:appid', async (req, res) => {
+  const appId = req.params.appid;
+  // url FOR NEWS ITEMS ATTACHED TO A GAME
+  const url = `https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=${appId}&count=12`
+
+  // urlDetails FOR A GAME WITH SIMPLIFIED GAME DETAILS LIKE TAGS/GENRES
+  const urlDetails = `https://steamspy.com/api.php?request=appdetails&appid=${appId}`;
+
+  // urlGameDeepDetails FOR A GAME WITH ALL THE DETAILS
+  const urlGameDeepDetails = `https://store.steampowered.com/api/appdetails?appids=${appId}`;
+
+  const gameDetails = await fetch(urlDetails);
+  const gameDetailsData = await gameDetails.json();
+
+  const gameNews = await fetch(url);
+  const gameNewsData = await gameNews.json();
+
+
+  const gameDeepDetails = await fetch(urlGameDeepDetails);
+  const gameDeepDetailsData = await gameDeepDetails.json();
+
+  const gameImageLength = gameDeepDetailsData.data.screenshots.length;
+  const screenshots = gameDeepDetailsData.data.screenshots;
+  const randomImage = screenshots[getRandomInt(gameImageLength - 1)];
+
+  console.log(gameNewsData);
+  console.log(gameDetailsData);
+  console.log(gameDeepDetailsData);
+
+  return res.send(renderTemplate('server/components/card/card.liquid', { title: 'card item' }));
+});
+
 app.get('game/:appid', async (req, res) => {
   const appId = req.params.appid;
   // url FOR NEWS ITEMS ATTACHED TO A GAME
@@ -50,14 +86,19 @@ app.get('game/:appid', async (req, res) => {
   const gameNews = await fetch(url);
   const gameNewsData = await gameNews.json();
 
+
   const gameDeepDetails = await fetch(urlGameDeepDetails);
   const gameDeepDetailsData = await gameDeepDetails.json();
+
+  const screenshots = gameDeepDetailsData[appId].data.screenshots
+  const gameImageLength = screenshots.length;
+  const randomImage = screenshots[getRandomInt(gameImageLength - 1)];
 
   console.log(gameNewsData);
   console.log(gameDetailsData);
   console.log(gameDeepDetailsData);
 
-  return res.send(renderTemplate('server/views/detail.liquid', { title: 'Home', gameNewsData: gameNewsData, gameDetailsData: gameDetailsData, gameDeepDetailsData: gameDeepDetailsData[appId] }));
+  return res.send(renderTemplate('server/views/detail.liquid', { title: 'Home', gameNewsData: gameNewsData, gameDetailsData: gameDetailsData, gameDeepDetailsData: gameDeepDetailsData[appId], randomImage: randomImage }));
 }
 );
 

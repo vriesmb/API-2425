@@ -1,13 +1,50 @@
 {% layout "server/layouts/base.liquid" %}
-
 {% block content %}
-
-<h1 class="h1">Latest news | {{ gameDetailsData.name }}</h1>
-<img src="{{ gameDeepDetailsData.data.header_image }}" alt="header image {{ newsItem.name }}">
-<h3>Game Description: {{ gameDeepDetailsData.data.short_description }}</h3>
 
 <section class="game-news">
 
+<img src="{{ randomImage.path_full }}" alt="header image {{ newsItem.name }}">
+<div>
+    <h2 class="h2-headline">○{{ gameDetailsData.name }}</h1>
+    <div>
+        <p>About</p>
+        <h3 class="h3-headline">{{ gameDeepDetailsData.data.short_description }}</h3>
+    </div>
+    <div>
+        <p>Developer</p>
+        <h3 class="h3-headline">{{ gameDetailsData.developer }}</h3>
+    </div>
+    <div>
+        <p>Price</p>
+        <h3 class="h3-headline" id="price-display">{{ gameDetailsData.price }}</h3>
+    </div>
+
+    
+    
+</div>
+<ul>
+        {% for newsItem in gameNewsData.appnews.newsitems %}
+        <li>
+        <a href="{{ newsItem.url }}" target="_blank">
+        {{ newsItem.title }}
+        </a>
+        </li>
+        {% endfor %}
+        
+  </ul>
+    
+</section>
+
+{% endblock %}
+
+{% comment %} <div>
+        
+        <div>
+            <h1 class="h1">Latest news | {{ gameDetailsData.name }}</h1>
+            <h3>Game Description: {{ gameDeepDetailsData.data.short_description }}</h3>
+        </div>
+    </div>
+   
     <h3>Game News Details for</h3>
     <h2>{{ gameDetailsData.name }}</h2>
     <h3>Game ID: {{ gameDetailsData.appid }}</h3>
@@ -18,21 +55,7 @@
         <h3>Already Released: {{ gameDeepDetailsData.data.release_date.date }}</h3>
     {% endif %}
 
-    <h3>Game Header Image: <img src="{{ gameDeepDetailsData.header_image }}" alt="Game Header Image"></h3>
+    <h3>Game Header Image: <img src="{{ gameDeepDetailsData.data.header_image }}" 
+    alt="Game Header Image"></h3>
 
-    <ul>
-        {% for newsItem in gameNewsData.appnews.newsitems %}
-        <li>
-            
-        
-        <a href="{{ gameDetails.url }}" target="_blank">
-        {{ newsItem.title }}
-        </a>
-        </li>
-        {% endfor %}
-        
-  </ul>
-  
-</section>
-
-{% endblock %}
+     {% endcomment %}
