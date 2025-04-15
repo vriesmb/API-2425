@@ -23,13 +23,27 @@ app
 
 app.get('/', async (req, res) => {
   // HIER GAMES OPHALEN
-  // const url = `https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=${gameNr}&count=3`
-  // const gameNews = await fetch(url);
-  // const gameNewsData = await gameNews.json();
-  // console.log(gameNewsData);
+  const url = `https://api.steampowered.com/IStoreService/GetAppList/v1/?key=${process.env.STEAM_API_KEY}&include_games=true&max_results=10`
+
+  const games = await fetch(url);
+  const gamesData = await games.json();
+  const enrichedGames = [];
+
+  // console.log({ gamesData })
+  for (const gameIndex in await gamesData.response.apps) {
+    const appId = gamesData.response.apps[gameIndex].appid;
+    const urlGameDeepDetails = `https://store.steampowered.com/api/appdetails?appids=${appId}`;
+
+    const gameDetails = await fetch(urlGameDeepDetails);
+    const gameDetailsData = await gameDetails.json();
+    // const data = gameDetailsData.data;`
+    enrichedGames.push(gameDetailsData[appId].data);
+    // console.log({ gameDetailsData })
+  }
 
   // return res.send(renderTemplate('server/views/index.liquid', { title: 'Home', games: gameData }));
-  return res.send(renderTemplate('server/views/index.liquid', { title: 'Home' }));
+  console.log(enrichedGames[0])
+  return res.send(renderTemplate('server/views/index.liquid', { title: 'Home', games: enrichedGames }));
 });
 
 function getRandomInt(max) {

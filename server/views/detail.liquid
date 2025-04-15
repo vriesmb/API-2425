@@ -29,7 +29,8 @@
     <div class="slider">
         {% for newsItem in gameNewsData.appnews.newsitems %}
             <section>
-                <p>{{ newsItem.title }}</p>
+                <h2 class="h2-headline">Article</h2>
+                <h3 class="h3-headline">{{ newsItem.title }}</h3>
                 {% if newsItem.firstImg %}
                     <img src="{{ newsItem.firstImg }}" alt="Nieuws afbeelding" />
                 {% endif %}

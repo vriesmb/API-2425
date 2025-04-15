@@ -4,17 +4,15 @@
 
 <h1 class="h1">{{ title }}</h1>
 
-<section class="pokemon">
-  <ul>
-    {% for newsItem in gameNewsData.appnews.newsitems %}
-    <li>
-      <a href="/news/{{ newsItem.gid }}">
-        {{ newsItem.title }}
+<section class="games-home">
+    {% for game in games %}
+    <section>
+      <a href="/game/{{ game.steam_appid }}">
+      <p>{{ game.name }} </p>
+      <img src="{{ game.screenshots[0].path_thumbnail }}" alt="">
       </a>
-    </li>
+    </section>
   {% endfor %}
-  </ul>
-  
 </section>
 
 {% endblock %}
