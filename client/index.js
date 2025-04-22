@@ -21,5 +21,6 @@ const rotateGenre = () => {
     }
 }
 
-setInterval(rotateGenre, 2000) // interval tussen de verandering van genre tekst items
+rotateGenre(); // direct uitvoeren bij de eerste run - zonder deze wacht hij 4sec
+setInterval(rotateGenre, 4000); // Interval tussen de verandering van genre tekst items
 

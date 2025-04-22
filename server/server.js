@@ -24,7 +24,11 @@ app
 app.get('/', async (req, res) => {
   // HIER GAMES OPHALEN
   const unreleasedIds = [
-    '2825530'
+    '2825530',
+    '1903340',
+    '2078230',
+    '2351330'
+
   ]
 
   const gamesData = await Promise.all(unreleasedIds.map(async unreleasedGameId => {

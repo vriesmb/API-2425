@@ -274,8 +274,46 @@ header{
 ::view-transition-new(featured-game) {
   animation-duration: 0.4s;
   animation-timing-function: ease-in-out;
+} */
+
+
+
+
+#genre_item {
+  view-transition-name: genre-word;
 }
 
-@view-transition {
-  navigation: auto;
-} */
+::view-transition-old(genre-word) {
+  animation: slideDownOut 3s ease-in-out forwards;
+  z-index: 1;
+}
+
+::view-transition-new(genre-word) {
+  animation: slideDownIn 1s ease-in-out forwards;
+  z-index: 2;
+}
+
+@keyframes slideDownOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  10% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slideDownIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
