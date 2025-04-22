@@ -27,7 +27,6 @@ body{
     padding-right: 3rem;
     padding-top: 30%;
     gap: 2rem;
-    transition: ease 1s all;
 
     & div{
       display: flex;
@@ -95,6 +94,58 @@ display: flex;
   height: fit-content;
 }    
 }
+
+header{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  & nav{
+    width: fit-content;
+    padding: 1em;
+    background-color: #84848440;
+    padding-left: 2em;
+    padding-right: 2em;
+    border-radius: .5em;
+  }
+
+  & a{
+    text-decoration: none;
+    color: inherit;
+    color: white;
+    font-family: "Archivo", sans-serif;
+    font-variant: uppercase;
+    letter-spacing: .2em;
+  }
+}
+
+.first_hero{
+  width: 100dvw;
+  height: 60dvh;
+  background-color: red;
+  padding: 5em;
+
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+  & h2{
+    z-index: 1;
+  }
+
+  & img{
+    position: absolute;
+    z-index: 0;
+    width: 100dvw;
+    height: 60dvh;
+    left: 0;
+    z-index: 0;
+    object-fit: cover;
+  }
+}
+
 
 .news-section{
   width: 100dvw;
@@ -187,12 +238,12 @@ display: flex;
       padding-right: 10rem;
       gap: 2rem;
       padding-top: 30%;
-      transition: ease 1s all;
   
       & div{
         display: flex;
         flex-direction: row;
-        gap: 1rem;
+        align-items: baseline;
+        gap: 1rem;  
     
   
         & p{
@@ -217,3 +268,14 @@ display: flex;
     filter: blur(2px);
   }
 }
+
+
+/* ::view-transition-old(featured-game),
+::view-transition-new(featured-game) {
+  animation-duration: 0.4s;
+  animation-timing-function: ease-in-out;
+}
+
+@view-transition {
+  navigation: auto;
+} */

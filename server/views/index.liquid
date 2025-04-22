@@ -4,6 +4,16 @@
 
 <h1 class="h1">{{ title }}</h1>
 
+<section class="first_hero">
+  
+
+  {% if games.size > 0 %}
+    <h2 class="h2-headline" view-transition-name="featured-game">{{ highlight.name }}</h2>
+    <h3 class="h3-headline">Popular & Unreleased</h3>
+    <img src="{{ games[0].screenshots[0].path_thumbnail }}" alt="First game thumbnail">
+  {% endif %}
+</section>
+
 <section class="games-home">
     {% for game in games %}
     <section>

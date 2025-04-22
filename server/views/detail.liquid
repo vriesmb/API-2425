@@ -3,9 +3,9 @@
 
 <section class="game-news">
 
-<img src="{{ randomImage.path_full }}" alt="header image {{ newsItem.name }}">
+<img src="{{ randomImage.path_full }}" view-transition-name="featured-game" alt="header image {{ newsItem.name }}">
 <div>
-    <h2 class="h2-headline">○{{ gameDetailsData.name }}</h1>
+    <h2 class="h2-headline" view-transition-name="featured-game">{{ gameDetailsData.name }}</h1>
     <div>
         <p>About</p>
         <h3 class="h3-headline">{{ gameDeepDetailsData.data.short_description }}</h3>
@@ -17,6 +17,9 @@
     <div>
         <p>Price</p>
         <h3 class="h3-headline" id="price-display">{{ gameDetailsData.price }}</h3>
+    </div>
+    <div>
+        <p id="genre_item" data-genre-ids="{{ gameIdGenres |  join: ',' }}"></p>
     </div>
 
     
@@ -40,10 +43,6 @@
 </section>
 
 {% endblock %}
-
-
-
-
 
 {% comment %} {% for newsItem in gameNewsData.appnews.newsitems %}
     <li>

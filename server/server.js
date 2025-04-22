@@ -23,27 +23,23 @@ app
 
 app.get('/', async (req, res) => {
   // HIER GAMES OPHALEN
-  const url = `https://api.steampowered.com/IStoreService/GetAppList/v1/?key=${process.env.STEAM_API_KEY}&include_games=true&max_results=10`
+  const unreleasedIds = [
+    '2825530'
+  ]
 
-  const games = await fetch(url);
-  const gamesData = await games.json();
-  const enrichedGames = [];
+  const gamesData = await Promise.all(unreleasedIds.map(async unreleasedGameId => {
+    const unreleasedGameDetails = await fetch(`https://store.steampowered.com/api/appdetails?appids=${unreleasedGameId}`);
+    const gameResponse = await unreleasedGameDetails.json();
 
-  // console.log({ gamesData })
-  for (const gameIndex in await gamesData.response.apps) {
-    const appId = gamesData.response.apps[gameIndex].appid;
-    const urlGameDeepDetails = `https://store.steampowered.com/api/appdetails?appids=${appId}`;
+    return gameResponse[unreleasedGameId].data
+  }))
 
-    const gameDetails = await fetch(urlGameDeepDetails);
-    const gameDetailsData = await gameDetails.json();
-    // const data = gameDetailsData.data;`
-    enrichedGames.push(gameDetailsData[appId].data);
-    // console.log({ gameDetailsData })
-  }
+
+  const featuredGame = gamesData[Math.floor(Math.random() * gamesData.length)];
+
 
   // return res.send(renderTemplate('server/views/index.liquid', { title: 'Home', games: gameData }));
-  console.log(enrichedGames[0])
-  return res.send(renderTemplate('server/views/index.liquid', { title: 'Home', games: enrichedGames }));
+  return res.send(renderTemplate('server/views/index.liquid', { title: 'Home', games: gamesData, highlight: featuredGame }));
 });
 
 function getRandomInt(max) {
@@ -107,7 +103,14 @@ app.get('game/:appid', async (req, res) => {
   const gameImageLength = screenshots.length;
   const randomImage = screenshots[getRandomInt(gameImageLength - 1)];
 
-  // ✅ FIX: voeg eerste img toe aan elk nieuwsitem
+
+  // genre is een array van objecten, ik moet het mappen naar een array van strings
+  // vervolgens kan ik het gebruiken in de liquid template
+  const gameIdGenres = gameDeepDetailsData[appId].data.genres.map(genre => genre.description) || [];
+
+  console.log("genre log", gameIdGenres);
+
+
   const newsItems = gameNewsDataRaw.appnews.newsitems.map(item => {
     let firstImg = null;
 
@@ -141,7 +144,8 @@ app.get('game/:appid', async (req, res) => {
     gameNewsData: gameNewsData,
     gameDetailsData: gameDetailsData,
     gameDeepDetailsData: gameDeepDetailsData[appId],
-    randomImage: randomImage
+    randomImage: randomImage,
+    gameIdGenres: gameIdGenres
   }));
 });
 
@@ -175,3 +179,4 @@ const renderTemplate = (template, data) => {
 // }
 
 // getData();
+
