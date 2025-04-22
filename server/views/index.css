@@ -303,7 +303,7 @@ header{
   }
   100% {
     opacity: 0;
-    transform: translateX(0%);
+    transform: translateX(10%);
   }
 }
 
@@ -312,6 +312,9 @@ header{
     opacity: 0;
     transform: translateX(-10%);
   }
+  10% {
+      opacity: 0;
+    }
   100% {
     opacity: 1;
     transform: translateX(0%);

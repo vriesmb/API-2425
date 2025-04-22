@@ -25,10 +25,11 @@
     <div>
         <p>Release Date</p>
         <h3 class="h3-headline">
-            {{ gameDeepDetailsData.data.release_date.date }}
             {% if gameDeepDetailsData.data.release_date.coming_soon %}
-            (Coming Soon) {% else %}
-            (Already Released) {% endif %}
+            (Coming Soon) - {{ gameDeepDetailsData.data.release_date.date }}
+            {% else %}
+            {{ gameDeepDetailsData.data.release_date.date }}
+        {% endif %}
         </h3>
     </div>
 
