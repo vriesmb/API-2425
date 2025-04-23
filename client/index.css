@@ -3,7 +3,7 @@
 @import "typography.css";
  
 /*.layout and view styling */
-@import './layouts/base.css';
+@import '../server/layouts/base.css';
 @import '../server/views/index.css';
  
 
