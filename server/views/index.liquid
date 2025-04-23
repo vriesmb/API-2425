@@ -35,6 +35,11 @@
       <img src="{{ game.header_image }}" alt="">
       <article>
         <p>{{ game.name }}</p>
+        {% if game.release_date.coming_soon %}
+          <p>(Coming Soon) - {{ game.release_date.date }}</p>
+          {% else %}
+          <p>{{ game.release_date.date }}</p>
+      {% endif %}
       </article>
       
       </a>

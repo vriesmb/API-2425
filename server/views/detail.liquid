@@ -39,21 +39,38 @@
 </section>
 
 <section class="news-section">
-    <h3 class="h3-headline">Latest news | {{ gameDetailsData.name }}</h3>
+    <h3 class="h3-headline">Latest news articles for {{ gameDetailsData.name }}</h3>
     <div class="slider">
         {% for newsItem in gameNewsData.appnews.newsitems %}
+            <a href="{{ newsItem.url }}" target="_blank">
             <section>
-                <h2 class="h2-headline">Article</h2>
+                <h2 class="h2-headline">{{ newsItem.author }}</h2>
                 <h3 class="h3-headline">{{ newsItem.title }}</h3>
                 {% if newsItem.firstImg %}
                     <img src="{{ newsItem.firstImg }}" alt="Nieuws afbeelding" />
-                {% endif %}
+                    {% else %}
+                        <img src="{{ gameDeepDetailsData.data.screenshots[forloop.index0].path_full }}" alt="Random screenshot" />
+                    {% endif %}
+                
             </section>
+            </a>
         {% endfor %}
     </div>
 </section>
 
 {% endblock %}
+
+
+
+
+{% comment %} forloop.index voert het volgende uit, maar dan in liquid: {% endcomment %}
+{% comment %} {% for page in pages -%}
+    {%- if forloop.length > 0 -%}
+      {{ page.title }}{% unless forloop.last %}, {% endunless -%}
+    {%- endif -%}
+  {% endfor %} {% endcomment %}
+
+
 
 {% comment %} {% for newsItem in gameNewsData.appnews.newsitems %}
     <li>
@@ -63,8 +80,6 @@
     </a>
     </li>
     {% endfor %} {% endcomment %}
-
-
 
 
 {% comment %} <div>
