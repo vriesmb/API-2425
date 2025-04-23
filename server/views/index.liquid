@@ -6,9 +6,15 @@
   
 
   {% if games.size > 0 %}
-    <h3 class="h3-headline">Featured game</h3>
+    <h3 class="h3-headline">Today's featured game</h3>
     <h2 class="h2-headline" view-transition-name="featured-game">{{ highlight.name }}</h2>
-    
+    <div><p>
+      {% if highlight.release_date.coming_soon %}
+        Game is Coming Soon | {{ highlight.release_date.date }}
+      {% else %}
+        Game was released on | {{ highlight.release_date.date }}
+      {% endif %}
+    </p></div>
     <img src="{{ highlight.screenshots[0].path_thumbnail }}" alt="First game thumbnail">
   {% endif %}
 </section>

@@ -1,6 +1,8 @@
 body{
   padding: 0;
   margin: 0;
+  background-color: rgb(0, 80, 61);
+  background: linear-gradient(to right, rgba(0, 65, 33, 0.988) 0% , rgb(0, 255, 128));
 }
 .game-news{
   margin: 0;
@@ -123,8 +125,8 @@ header{
   width: 100dvw;
   height: fit-content;
   /* background-color: rgb(0, 80, 61); */
-  background: linear-gradient(to right, rgba(0, 65, 33, 0.988) 0% , rgb(0, 255, 128));
-  background-color: rgba(0, 255, 187, 0.357);
+  /* background: linear-gradient(to right, rgba(0, 65, 33, 0.988) 0% , rgb(0, 255, 128)); */
+  /* background-color: rgba(0, 255, 187, 0.357); */
 
   box-sizing: border-box;
   flex-direction: column;
@@ -138,13 +140,28 @@ header{
   padding-left: 2rem;
   padding-right: 2rem;
 
-  overflow: hidden;
+  /* overflow: hidden; */
+
+  & > div{
+    z-index: 99;
+
+    & p{
+      font-size: 1em;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      color: #ffffffc6;
+    }
+  }
 
   & h2{
     z-index: 1;
     text-align: center;
-    max-width: 80%;
-    margin-bottom: -3vh;
+    text-shadow: rgba(0, 56, 47, 0.708) 1px 0 50px;
+
+  }
+
+  & h3{
+    color: #e2fff7d4;
   }
 
   & img{
@@ -155,10 +172,11 @@ header{
     top: 0;
     z-index: 0;
     object-fit: cover;
-    opacity: 0.6;
-    filter: blur(1px);
-    -webkit-filter: blur(1px);
+    opacity: 0.4;
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
     border-radius: 6em 6em 0em 0em;
+    margin-top: -3vh;
   }
 }
 
@@ -227,6 +245,10 @@ header{
 @media screen and (min-width: 680px) { 
 .first_hero{
 
+  & img{
+    margin-top: -4vh;
+  }
+
   & h2{
     max-width: 70%;
   }
@@ -236,8 +258,12 @@ header{
 @media screen and (min-width: 1080px) { 
   .first_hero{
 
+    & img{
+      margin-top: -5vh;
+    }
+
     & h2{
-      max-width: 50%;
+      max-width: 70%;
     }
   }
 
@@ -311,12 +337,12 @@ header{
   view-transition-name: genre-word;
 }
 
-::view-transition-old(genre-word) {
+.game-news::view-transition-old(genre-word) {
   animation: slideDownOut 3s ease-in-out forwards;
   z-index: 1;
 }
 
-::view-transition-new(genre-word) {
+.game-news::view-transition-new(genre-word) {
   animation: slideDownIn 1s ease-in-out forwards;
   z-index: 2;
 }
