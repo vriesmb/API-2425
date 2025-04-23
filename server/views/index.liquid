@@ -27,6 +27,8 @@
 </section>
 
 <section class="games-home">
+  <h3 class="h3-headline">Unreleased Games</h3>
+  <section>
     {% for game in games %}
     <section>
       <a href="/game/{{ game.steam_appid }}">
@@ -35,6 +37,7 @@
       </a>
     </section>
   {% endfor %}
+  </section>
 </section>
 
 {% endblock %}
