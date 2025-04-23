@@ -1,16 +1,53 @@
 /* global styles */
 @import 'reset.css';
 @import "typography.css";
+ 
+/*.layout and view styling */
+@import 'base.css';
+@import 'index.css';
+ 
+
+ 
+* {
+  box-sizing: border-box;
+}
+ 
+body {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+ 
+main {
+  padding: 1rem;
+}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* @import 'reset.css';
+@import "typography.css";
+@import '../server/components/card/card.css';
+@import '../server/views/index.css';
+/* global styles */
+/* @import '../server/layouts/base.css'; */
 
 /*.layout and view styling */
-@import '../server/layouts/base.css';
-@import '../server/views/index.css';
 
 /* component styling */
-@import '../server/components/card/card.css';
 
-body {
+/* body {
   color: black;
   margin: 0 auto;
   padding: 0 auto;
-}
+} */ 
