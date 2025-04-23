@@ -15,7 +15,7 @@
         Game was released on | {{ highlight.release_date.date }}
       {% endif %}
     </p></div>
-    <img src="{{ highlight.screenshots[0].path_thumbnail }}" alt="First game thumbnail">
+    <video src="{{ highlight.movies[0].mp4.max }}" autoplay muted loop controls="false" alt="First game thumbnail" class="video-no-controls"></video>
   {% endif %}
 </section>
 
