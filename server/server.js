@@ -53,7 +53,7 @@ function getRandomInt(max) {
 // app.get('card/:appid', async (req, res) => {
 //   const appId = req.params.appid;
 //   // url FOR NEWS ITEMS ATTACHED TO A GAME
-//   const a url = `https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=${appId}&count=12`
+//   const url = `https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=${appId}&count=12`
 
 //   // urlDetails FOR A GAME WITH SIMPLIFIED GAME DETAILS LIKE TAGS/GENRES
 //   const urlDetails = `https://steamspy.com/api.php?request=appdetails&appid=${appId}`;
