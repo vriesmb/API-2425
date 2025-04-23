@@ -90,11 +90,15 @@ app.get('game/:appid', async (req, res) => {
 
   // urlDetails FOR A GAME WITH SIMPLIFIED GAME DETAILS LIKE TAGS/GENRES
   const urlDetails = `https://steamspy.com/api.php?request=appdetails&appid=${appId}`;
+  const headers = {
+    'Accept': 'application/json'
+  };
+
 
   // urlGameDeepDetails FOR A GAME WITH ALL THE DETAILS
   const urlGameDeepDetails = `https://store.steampowered.com/api/appdetails?appids=${appId}`;
 
-  const gameDetails = await fetch(urlDetails);
+  const gameDetails = await fetch(urlDetails, { headers });
   const gameDetailsData = await gameDetails.json();
 
   const gameNews = await fetch(url);

@@ -1,5 +1,5 @@
 import './index.css';
-// import '../server/views/index.js';
+import '../server/views/index.js';
 
 console.log('Hello, world!');
 
