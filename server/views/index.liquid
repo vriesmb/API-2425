@@ -8,14 +8,21 @@
   {% if games.size > 0 %}
     <h3 class="h3-headline">Today's featured game</h3>
     <h2 class="h2-headline" view-transition-name="featured-game">{{ highlight.name }}</h2>
-    <div><p>
+    <div>
+      <p>
       {% if highlight.release_date.coming_soon %}
         Game is Coming Soon | {{ highlight.release_date.date }}
       {% else %}
         Game was released on | {{ highlight.release_date.date }}
       {% endif %}
-    </p></div>
+      </p>
+    </div>
     <video src="{{ highlight.movies[0].mp4.max }}" autoplay muted loop controls="false" alt="First game thumbnail" class="video-no-controls"></video>
+    <div>
+      <button>
+        <a href="/game/{{ highlight.steam_appid }}">View game info</a>
+      </button>
+    </div>
   {% endif %}
 </section>
 
