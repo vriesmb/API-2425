@@ -47,3 +47,25 @@ document.addEventListener("DOMContentLoaded", function () {
 rotateGenre(); // direct uitvoeren bij de eerste run - zonder deze wacht hij 4sec
 setInterval(rotateGenre, 4000); // Interval tussen de verandering van genre tekst items
 
+// document.addEventListener("DOMContentLoaded", function () {
+//     const priceElement = document.getElementById("price-display");
+
+//     const price = priceElement.textContent;
+
+//     if (!price) {
+//         priceElement.textContent = 'Is not available yet';
+//         return;
+//     }
+
+//     const rawCents = parseFloat(price);
+
+//     // hier van cents naar dollars
+//     const dollars = rawCents / 100;
+
+//     const formattedPrice = new Intl.NumberFormat('nl-NL', {
+//         style: 'currency',
+//         currency: 'USD'
+//     }).format(dollars);
+
+//     priceElement.textContent = formattedPrice;
+// });

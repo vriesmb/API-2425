@@ -14,12 +14,13 @@
 }
  
 body {
-  max-width: 1440px;
   margin: 0 auto;
 }
  
 main {
-  padding: 1rem;
+  display: flex;
+  gap: 8rem;
+  flex-direction: column;
 }
  
 

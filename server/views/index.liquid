@@ -32,8 +32,11 @@
     {% for game in games %}
     <section>
       <a href="/game/{{ game.steam_appid }}">
-      <p>{{ game.name }} </p>
-      <img src="{{ game.screenshots[0].path_thumbnail }}" alt="">
+      <img src="{{ game.header_image }}" alt="">
+      <article>
+        <p>{{ game.name }}</p>
+      </article>
+      
       </a>
     </section>
   {% endfor %}
