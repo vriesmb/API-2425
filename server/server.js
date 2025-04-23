@@ -18,7 +18,7 @@ const apiKey = process.env.STEAM_API_KEY;
 
 app
   .use(logger())
-  .use('/', sirv(process.env.NODE_ENV === 'development' ? 'client' : 'dist'))
+  .use('/', sirv('dist', { dev: false }))
   .listen(3000, () => console.log('Server available on http://localhost:3000'));
 
 app.get('/', async (req, res) => {
