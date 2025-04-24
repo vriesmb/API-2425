@@ -500,15 +500,6 @@ header{
 }
 
 
-/* ::view-transition-old(featured-game),
-::view-transition-new(featured-game) {
-  animation-duration: 0.4s;
-  animation-timing-function: ease-in-out;
-} */
-
-
-
-
 #genre_item {
   view-transition-name: genre-word;
 }
