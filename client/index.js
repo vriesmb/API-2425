@@ -31,6 +31,11 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
+    if (parseFloat(price) === 0) {
+        priceElement.textContent = 'Free To Play';
+        return;
+    }
+
     const rawCents = parseFloat(price);
 
     // hier van cents naar dollars

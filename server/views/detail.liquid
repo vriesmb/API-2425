@@ -5,7 +5,7 @@
 
 <img src="{{ randomImage.path_full }}" view-transition-name="featured-game" alt="header image {{ newsItem.name }}">
 <div>
-    <h2 class="h2-headline" view-transition-name="featured-game">{{ gameDetailsData.name }}</h1>
+    <h2 class="h2-headline" view-transition-name="featured-game">{{ gameDeepDetailsData.data.name }}</h1>
     <div>
         <p>About</p>
         <h3 class="h3-headline">{{ gameDeepDetailsData.data.short_description }}</h3>
@@ -25,11 +25,16 @@
     <div>
         <p>Release Date</p>
         <h3 class="h3-headline">
-            {% if gameDeepDetailsData.data.release_date.coming_soon %}
-            (Coming Soon) - {{ gameDeepDetailsData.data.release_date.date }}
-            {% else %}
-            {{ gameDeepDetailsData.data.release_date.date }}
+            
+    {% if gameDeepDetailsData.data.release_date.coming_soon %}
+         {% if gameDeepDetailsData.data.release_date.date == "Coming Soon" %}
+        Coming Soon
+         {% else %}
+        {{ gameDeepDetailsData.data.release_date.date }}
         {% endif %}
+    {% else %}
+    Already Released - {{ gameDeepDetailsData.data.release_date.date }}
+    {% endif %}
         </h3>
     </div>
 
@@ -39,7 +44,7 @@
 </section>
 
 <section class="news-section">
-    <h3 class="h3-headline">Latest news articles for {{ gameDetailsData.name }}</h3>
+    <h3 class="h3-headline">Latest news articles for {{ gameDeepDetailsData.data.name }}</h3>
     <div class="slider">
         {% for newsItem in gameNewsData.appnews.newsitems %}
             <a href="{{ newsItem.url }}" target="_blank">

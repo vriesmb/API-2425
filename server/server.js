@@ -53,55 +53,25 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-// app.get('card/:appid', async (req, res) => {
-//   const appId = req.params.appid;
-//   // url FOR NEWS ITEMS ATTACHED TO A GAME
-//   const url = `https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=${appId}&count=12`
-
-//   // urlDetails FOR A GAME WITH SIMPLIFIED GAME DETAILS LIKE TAGS/GENRES
-//   const urlDetails = `https://steamspy.com/api.php?request=appdetails&appid=${appId}`;
-
-//   // urlGameDeepDetails FOR A GAME WITH ALL THE DETAILS
-//   const urlGameDeepDetails = `https://store.steampowered.com/api/appdetails?appids=${appId}`;
-
-//   const gameDetails = await fetch(urlDetails);
-//   const gameDetailsData = await gameDetails.json();
-
-//   const gameNews = await fetch(url);
-//   const gameNewsData = await gameNews.json();
 
 
-//   const gameDeepDetails = await fetch(urlGameDeepDetails);
-//   const gameDeepDetailsData = await gameDeepDetails.json();
-
-//   const gameImageLength = gameDeepDetailsData.data.screenshots.length;
-//   const screenshots = gameDeepDetailsData.data.screenshots;
-//   const randomImage = screenshots[getRandomInt(gameImageLength - 1)];
-
-//   console.log(gameNewsData);
-//   console.log(gameDetailsData);
-//   console.log(gameDeepDetailsData);
-
-//   return res.send(renderTemplate('server/components/card/card.liquid', { title: 'card item' }));
-// });
 
 app.get('game/:appid', async (req, res) => {
   const appId = req.params.appid;
 
-  // url FOR NEWS ITEMS ATTACHED TO A GAME
+  // url NEWS ITEMS
   const url = `https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=${appId}&count=12`;
 
-  // urlDetails FOR A GAME WITH SIMPLIFIED GAME DETAILS LIKE TAGS/GENRES
+  // urlDetails SIMPLIFIED GAME DETAILS zoals TAGS/GENRES
   const urlDetails = `https://steamspy.com/api.php?request=appdetails&appid=${appId}`;
-  const headers = {
-    'Accept': 'application/json'
-  };
-
+  // const headers = {
+  //   'Accept': 'application/json'
+  // };
 
   // urlGameDeepDetails FOR A GAME WITH ALL THE DETAILS
   const urlGameDeepDetails = `https://store.steampowered.com/api/appdetails?appids=${appId}`;
 
-  const gameDetails = await fetch(urlDetails, { headers });
+  const gameDetails = await fetch(urlDetails);
   const gameDetailsData = await gameDetails.json();
 
   const gameNews = await fetch(url);
@@ -120,6 +90,11 @@ app.get('game/:appid', async (req, res) => {
   const gameIdGenres = gameDeepDetailsData[appId].data.genres.map(genre => genre.description) || [];
 
   console.log("genre log", gameIdGenres);
+
+
+
+
+
 
 
   const newsItems = gameNewsDataRaw.appnews.newsitems.map(item => {
@@ -160,6 +135,11 @@ app.get('game/:appid', async (req, res) => {
   }));
 });
 
+
+
+
+
+
 const renderTemplate = (template, data) => {
   const templateData = {
     NODE_ENV: process.env.NODE_ENV || 'production',
@@ -168,6 +148,13 @@ const renderTemplate = (template, data) => {
 
   return engine.renderFileSync(template, templateData);
 };
+
+
+
+
+
+
+
 
 // http://api.steampowered.com/<interface name>/<method name>/v<version>/?key=<api key>&format=<format>
 
@@ -191,3 +178,37 @@ const renderTemplate = (template, data) => {
 
 // getData();
 
+
+
+
+// app.get('card/:appid', async (req, res) => {
+//   const appId = req.params.appid;
+//   // url FOR NEWS ITEMS ATTACHED TO A GAME
+//   const url = `https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=${appId}&count=12`
+
+//   // urlDetails FOR A GAME WITH SIMPLIFIED GAME DETAILS LIKE TAGS/GENRES
+//   const urlDetails = `https://steamspy.com/api.php?request=appdetails&appid=${appId}`;
+
+//   // urlGameDeepDetails FOR A GAME WITH ALL THE DETAILS
+//   const urlGameDeepDetails = `https://store.steampowered.com/api/appdetails?appids=${appId}`;
+
+//   const gameDetails = await fetch(urlDetails);
+//   const gameDetailsData = await gameDetails.json();
+
+//   const gameNews = await fetch(url);
+//   const gameNewsData = await gameNews.json();
+
+
+//   const gameDeepDetails = await fetch(urlGameDeepDetails);
+//   const gameDeepDetailsData = await gameDeepDetails.json();
+
+//   const gameImageLength = gameDeepDetailsData.data.screenshots.length;
+//   const screenshots = gameDeepDetailsData.data.screenshots;
+//   const randomImage = screenshots[getRandomInt(gameImageLength - 1)];
+
+//   console.log(gameNewsData);
+//   console.log(gameDetailsData);
+//   console.log(gameDeepDetailsData);
+
+//   return res.send(renderTemplate('server/components/card/card.liquid', { title: 'card item' }));
+// });

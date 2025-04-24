@@ -10,11 +10,7 @@
     <h2 class="h2-headline" view-transition-name="featured-game">{{ highlight.name }}</h2>
     <div>
       <p>
-      {% if highlight.release_date.coming_soon %}
-        Game is Coming Soon | {{ highlight.release_date.date }}
-      {% else %}
-        Game was released on | {{ highlight.release_date.date }}
-      {% endif %}
+      {{ highlight.release_date.date }}
       </p>
     </div>
     <video src="{{ highlight.movies[0].mp4.max }}" autoplay muted loop controls="false" alt="First game thumbnail" class="video-no-controls"></video>
@@ -36,10 +32,14 @@
       <article>
         <p>{{ game.name }}</p>
         {% if game.release_date.coming_soon %}
-          <p>(Coming Soon) - {{ game.release_date.date }}</p>
-          {% else %}
-          <p>{{ game.release_date.date }}</p>
-      {% endif %}
+         {% if game.release_date.date == "Coming Soon" %}
+           <p>Coming Soon</p>
+         {% else %}
+           <p>{{ game.release_date.date }}</p>
+          {% endif %}
+        {% else %}
+          <p>Already Released - {{ game.release_date.date }}</p>
+        {% endif %}
       </article>
       
       </a>
